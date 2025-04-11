@@ -2,4 +2,4 @@ It is related to Entity class.
 Its an alternate for finder methods.
 
 @Query("select s from Student s where s.email=:x")
-Student searchByEmail(@Param("x") String email);
+Optional<Student> searchByEmail(@Param("x") String email);
