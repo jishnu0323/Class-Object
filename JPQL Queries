@@ -1,5 +1,23 @@
 It is related to Entity class.
 Its an alternate for finder methods.
 
-@Query("select s from Student s where s.email=:x")
+//All the below are written in Repository Class which extends JPA Repository.
+
+
+Example 1:
+@Query("select s from Student s where s.email=:x")               // Here Student is refering to entity class name not SQL parameter.
 Optional<Student> searchByEmail(@Param("x") String email);
+
+
+Example 2:
+
+@Query("select t from Student t where t.mobile=:y")
+Optional<Student> searchByMobile(@Param("y") String mobile);
+
+Example 3:
+
+@Query("select x from Student x where x.email=:mail and x.mobile=:mob")
+Optional<Student> searchByEmailAndMobile(@Param("mail") String email, @Param("mob") String mobile);
+
+@Query("select s from Student s where s.email=:mail or s.mobile=:mob")
+Iterable<Student> searchByEmailOrMobile(@Param("mail" String mobile, @Param("mob") String mobile);
