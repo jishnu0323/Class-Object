@@ -1,0 +1,21 @@
+The EntityManger is the primary interface for interacting with the persistence context in Java Persistence API(JPA). When working with JPQL(Java Persistence Query Language), the EntityManger is used to create, execute and manage JPQL queries.
+
+Steps: All these below code are written in service layer
+
+In the service layer create an Entity Manager, to allow dependency injection
+
+@Autowired
+private EntityManager entityManager;                                     
+
+public Optional<Student> findByEmail(String email){                             
+
+String jpql = "select s from Student s where s.email=:mail";                        //JPQL is used here
+TypedQuery<Student> query = entityManager.createQuery(jpql,Student.class);   
+query.setParameter("mail",email);
+
+Student student = query.getSingleResult();
+return student;
+
+}
+
+
